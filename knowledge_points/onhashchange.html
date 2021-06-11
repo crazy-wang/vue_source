@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>页面1</title>
+    <style>  
+        .navigate{  
+            height:100px;  
+            width:300px;  
+            background-color:#0000ff;  
+            display:none;  
+        }  
+          
+        .home{  
+            height:100px;  
+            width:300px;  
+            background-color:#00ff00;  
+            display:none;  
+        }  
+          
+        .last{  
+            height:100px;  
+            width:300px;  
+            background-color:#ff0000;  
+            display:none;  
+        }  
+    </style> 
+</head>
+<body>
+  <div>kakakk</div>
+
+    <input type="button" value="" onclick="toNextPageWhenClick();">  
+    <button type="button" name="" value="跳转" onclick="window.location.href='http://baidu.com'">跳转到百度</button>
+    <div class="home" id="0">HOME PAGE</div>  
+    <div class="navigate" id="1">ajax1</div>  
+    <div class="navigate" id="2">ajax2</div>  
+    <div class="navigate" id="3">ajax3</div>  
+    <div class="navigate" id="4">ajax4</div>  
+    <div class="last" id="5">last page</div>  
+</body>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var currentPageIndex = 0;
+    window.onload = function(){  
+      currentPageIndex = 0;  
+      showPageAtIndex(currentPageIndex);  
+      recordHash(currentPageIndex);  
+  }
+  window.onhashchange = function () {
+    console.log('-------hashChange');
+    var hash = window.location.hash;
+    var id = parseInt(hash.substr(1));
+    showPageAtIndex(id);  
+  }
+  function recordHash(id) {
+    window.location.hash = id;
+  }
+  function showPageAtIndex(id) {
+    $("div[id!="+id+"]").hide();
+    $("#"+id).show();
+    if(isHomePage(id)) {
+        $("input").attr("value","current is home page,next page=1");
+    } else if(isLastPage(id)) {
+        $("input").attr("value","current page="+id+", it is the end.");
+    } else {
+        $("input").attr("value","current page="+id+",next page="+(id+1));
+    }
+  }
+  function toNextPageWhenClick() {
+    currentPageIndex++;
+    if(isValidPageIndex(currentPageIndex)) {
+        // showPageAtIndex(currentPageIndex);
+        recordHash(currentPageIndex);
+    } else {
+        return ;
+    }
+  }
+  function isHomePage(id) {
+    return id == 0;
+  }
+  function isLastPage(id) {
+    return id == 5;
+  }
+  function isValidPageIndex(id) {
+    return id <= 5;
+  }
+</script>
+</html>
