@@ -119,6 +119,9 @@ export default new Vuex.Store({
             console.log(getters, 'getters打印')
             return state.age + '岁'
         }
+        // ageText(state) {
+        //     return state.age+ '岁很好的'
+        // }
     }
 })
 

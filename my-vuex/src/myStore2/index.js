@@ -10,16 +10,20 @@ export default new Vuex.Store({
         age: 25
     },
     mutations: {
-        ADD(state) {
+        ADD(state) { // 这里的state是形参，不过他接收的是真正的state
             state.age++
         }
     },
     actions: {
         add({commit}) {
             setTimeout(() => {
-                console.log(this)
                 commit('ADD')
             }, 2000)
+        }
+    },
+    getters: {
+        dobuleAge(state) {
+            return state.age * 2
         }
     }
 })

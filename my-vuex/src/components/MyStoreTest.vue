@@ -8,6 +8,9 @@
         <p>
             <span @click="addAgeAsync">异步增加(2s后)</span>
         </p>
+        <p>
+            getters:双倍年龄-{{$store.getters.dobuleAge}}
+        </p>
     </div>
 </template>
 
