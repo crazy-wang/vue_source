@@ -22,8 +22,11 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        dobuleAge(state) {
+        doubleAge(state) {
             return state.age * 2
+        },
+        selfAge(state) {
+            return state.age / 2
         }
     }
 })

@@ -1,3 +1,4 @@
+// 不利用computed，直接getters版本
 let Vue
 
 class Store {
